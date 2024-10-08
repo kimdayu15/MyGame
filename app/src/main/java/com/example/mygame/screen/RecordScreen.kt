@@ -57,6 +57,7 @@ fun RecordScreen(navController: NavHostController, record: Records) {
         if (record.level == 1) {
             recordList.forEach {
                 if (level1List.size <= 3) {
+
                     recordList.add(record)
                     edit.putString("recordList", gson.toJson(recordList)).apply()
                 }

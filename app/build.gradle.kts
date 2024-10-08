@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    kotlin("plugin.serialization").version("1.7.10")
 }
 
 android {
@@ -50,11 +51,14 @@ android {
 }
 
 dependencies {
-    implementation ("com.google.code.gson:gson:2.11.0")
+    implementation (libs.gson)
     implementation (libs.androidx.navigation.compose)
-    implementation ("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("io.coil-kt:coil:2.7.0")
-    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation (libs.androidx.datastore.preferences)
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
+    implementation(libs.kotlinx.serialization.json)
+
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

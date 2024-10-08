@@ -34,10 +34,10 @@ import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import com.example.mygame.R
 import com.example.mygame.model.Quiz
+import com.example.mygame.model.Records
 import com.example.mygame.navhost.NavigationItem
 import com.example.mygame.ui.theme.MyGameTheme
-
-
+import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
 @Composable
@@ -216,8 +216,10 @@ fun QuizScreen(navController: NavHostController, quizlevel: String) {
 
         Spacer(modifier = Modifier.padding(20.dp))
 
-        Row {
-            Button(onClick = { navController.navigate("record") }) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+            Button(onClick = {
+                val record = Records(score.intValue, level.intValue)
+                navController.navigate(record) }) {
                 Text(text = "END THE GAME")
             }
         }

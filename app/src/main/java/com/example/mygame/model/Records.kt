@@ -1,3 +1,6 @@
 package com.example.mygame.model
 
-data class Records (val score : Int, val level : Int)
+import java.io.Serializable
+
+@kotlinx.serialization.Serializable
+data class Records (val score : Int, val level : Int):Serializable

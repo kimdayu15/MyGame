@@ -81,6 +81,7 @@ fun LevelScreen(navController: NavHostController) {
         }
 
         Row (modifier = Modifier.padding(0.dp,10.dp)){
+
             Button(onClick = { navController.navigate("record") }, colors = ButtonDefaults.buttonColors( Color(
                 0xFFABE049
             )
