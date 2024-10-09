@@ -35,7 +35,7 @@ fun AppNavHost(
 
         composable<Records> { navBackStackEntry ->
             val records : Records = navBackStackEntry.toRoute()
-            RecordScreen(navController, records)
+            RecordScreen(records)
 
         }
     }

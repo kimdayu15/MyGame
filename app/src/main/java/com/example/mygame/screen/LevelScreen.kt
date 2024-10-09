@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -21,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.mygame.R
+import com.example.mygame.model.Records
 import com.example.mygame.navhost.NavigationItem
 import com.example.mygame.ui.theme.MyGameTheme
 
@@ -32,6 +32,7 @@ fun LevelScreen(navController: NavHostController) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Row {
             Button(onClick = { navController.navigate("quiz/1") }, colors = ButtonDefaults.buttonColors( Color(
                 0xFF7F49E0
@@ -64,11 +65,13 @@ fun LevelScreen(navController: NavHostController) {
             }
         }
 
-        Row (modifier = Modifier.padding(0.dp,10.dp)){
-            Button(onClick = { navController.navigate("quiz/3") }, colors = ButtonDefaults.buttonColors( Color(
-                0xFFE0BA49
-            )
-            )) {
+        Row(modifier = Modifier.padding(0.dp, 10.dp)) {
+            Button(
+                onClick = { navController.navigate("quiz/3") },
+                colors = ButtonDefaults.buttonColors(
+                    Color(0xFF03A9F4)
+                )
+            ) {
                 Image(
                     painter = painterResource(R.drawable.level1),
                     contentDescription = "Level 3 button",
@@ -80,12 +83,16 @@ fun LevelScreen(navController: NavHostController) {
             }
         }
 
-        Row (modifier = Modifier.padding(0.dp,10.dp)){
+        Row(modifier = Modifier.padding(0.dp, 10.dp)) {
 
-            Button(onClick = { navController.navigate("record") }, colors = ButtonDefaults.buttonColors( Color(
-                0xFFABE049
+            Button(
+                onClick = {
+                    val record = Records(0, 0)
+                    navController.navigate(record)
+                },
+                colors = ButtonDefaults.buttonColors(Color(0xFFF44336))
             )
-            )) {
+            {
                 Text(text = "Record")
 
             }

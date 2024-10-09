@@ -11,11 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -23,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,24 +29,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import com.example.mygame.R
 import com.example.mygame.model.Quiz
 import com.example.mygame.model.Records
 import com.example.mygame.navhost.NavigationItem
 import com.example.mygame.ui.theme.MyGameTheme
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
+
 
 
 @Composable
-fun QuizScreen(navController: NavHostController, quizlevel: String) {
+fun QuizScreen(navController: NavHostController, `quiz-level`: String) {
     val quiz = remember {
         Quiz()
     }
 
     val level = remember {
-        mutableIntStateOf(quizlevel.toInt())
+        mutableIntStateOf(`quiz-level`.toInt())
     }
     val currentQuestion = remember {
         mutableStateOf(quiz.createQuiz(level.intValue))
@@ -57,9 +55,6 @@ fun QuizScreen(navController: NavHostController, quizlevel: String) {
     }
     val quesNum = remember {
         mutableIntStateOf(1)
-    }
-    val limit = remember {
-        mutableIntStateOf(10)
     }
     Box(
         modifier = with(Modifier) {
@@ -80,6 +75,14 @@ fun QuizScreen(navController: NavHostController, quizlevel: String) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            Row {
+                Button(onClick = { }, colors = ButtonDefaults.buttonColors(Color(0xFF03A9F4))){
+                    Text(
+                        text = "Question : ${quesNum.intValue}",
+                        fontWeight = FontWeight.Medium)
+                }
+
+            }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 val height = 30.dp
                 val width = 30.dp
@@ -87,7 +90,7 @@ fun QuizScreen(navController: NavHostController, quizlevel: String) {
                     modifier = Modifier
                         .width(width)
                         .height(height),
-                    painter = painterResource(id = R.drawable.coin),
+                    painter = painterResource(id = R.drawable.diamond),
                     contentDescription = "coin"
                 )
                 Text(
@@ -95,15 +98,7 @@ fun QuizScreen(navController: NavHostController, quizlevel: String) {
                     fontWeight = FontWeight.ExtraBold
                 )
             }
-            Row {
 
-                Button(onClick = { /*TODO*/ }){
-                    Text(
-                        text = "Questions : ${quesNum.intValue}/${limit.intValue}",
-                        fontWeight = FontWeight.Medium)
-                }
-
-            }
         }
         Row {
             Text(
